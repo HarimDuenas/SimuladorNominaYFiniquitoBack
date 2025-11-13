@@ -1,0 +1,50 @@
+[
+  {
+    "cuenta": "Jose Luis",
+    "correo": "Jose@correo.com",
+    "nombre": "Jose Luis Narvaez Martínez",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "Jose123"
+  },
+  {
+    "cuenta": "Harim Dueñas",
+    "correo": "Harim@correo.com",
+    "nombre": "Harim Jesus Enrique Dueñas Dávila",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "Harim123"
+  },
+  {
+    "cuenta": "Julian Hernandez",
+    "correo": "Julian@correo.com",
+    "nombre": "Julian Emmanuel Hernández",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "Julian123"
+  },
+  {
+    "cuenta": "Emiliano Santos",
+    "correo": "Santos@correo.com",
+    "nombre": "Emiliano Alejandro Santos González",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "Santos123"
+  },
+  {
+    "cuenta": "Georgina Salazar",
+    "correo": "Georgina@correo.com",
+    "nombre": "Mtra. Georgina Salazar Partido",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "dieLehrerin"
+  },
+  {
+    "cuenta": "Edson Leonardo",
+    "correo": "Edson@correo.com",
+    "nombre": "Edson Leonardo Sánchez Montalvo",
+    "examen": false,
+    "comprado": false,
+    "contrasena": "Edson123"
+  }
+]

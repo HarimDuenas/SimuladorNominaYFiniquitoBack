@@ -298,11 +298,19 @@ const calcularNomina = (req, res) => {
         } = req.body;
 
         // CALCULO FINAL: NETO A PAGAR
-        const netoPagar = Number(totalPercepciones) - Number(totalDeducciones);
+        let netoPagar = Number(totalPercepciones) - Number(totalDeducciones);
+        let saldoPendiente = 0;
+
+        // Si las deudas superan el sueldo, el pago es 0.
+        if (netoPagar < 0) {
+            saldoPendiente = Math.abs(netoPagar);
+            netoPagar = 0;
+        }
 
         // ESTRUCTURACIÓN DE LA RESPUESTA 
         const respuestaNomina = {
             netoPagar: Number(netoPagar.toFixed(2)),
+            ...(saldoPendiente > 0 && { mensajeAlerta: `Atención: Las deducciones exceden el sueldo. Saldo pendiente: $${saldoPendiente.toFixed(2)}` }),
             totalPercepciones: Number(totalPercepciones),
             totalDeducciones: Number(totalDeducciones),
             detallesCalculo: {
@@ -337,11 +345,18 @@ const calcularFiniquito = (req, res) => {
         } = req.body;
 
         // CALCULO FINAL: NETO A PAGAR
-        const netoPagar = Number(totalPercepciones) - Number(totalDeducciones);
+        let netoPagar = Number(totalPercepciones) - Number(totalDeducciones);
+        let saldoPendiente = 0;
+
+        if (netoPagar < 0) {
+            saldoPendiente = Math.abs(netoPagar);
+            netoPagar = 0;
+        }
 
         // ESTRUCTURACIÓN DE LA RESPUESTA
         const respuestaFiniquito = {
             netoPagar: Number(netoPagar.toFixed(2)),
+            ...(saldoPendiente > 0 && { mensajeAlerta: `Atención: Las deducciones exceden el sueldo. Saldo pendiente: $${saldoPendiente.toFixed(2)}` }),
             totalPercepciones: Number(totalPercepciones),
             totalDeducciones: Number(totalDeducciones),
             detallesCalculo: {

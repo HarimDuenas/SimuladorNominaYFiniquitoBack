@@ -1,8 +1,11 @@
 const express = require("express");
-const calculosRoutes = require("./routes/calculos.routes");
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+//Importaciones de las rutas
+const calculosRoutes = require("./routes/calculos.routes");
+const documentosRoutes = require("./routes/documentos.routes");
 
 // Middlewares mínimos
 app.use(express.json());
@@ -33,6 +36,7 @@ app.use(cors({
 
 // Montar rutas bajo /api
 app.use("/api", calculosRoutes);
+app.use("/api", documentosRoutes);
 
 // Verificar su correcto funcionamiento 
 app.get("/health", (_req, res) => res.json({ ok: true }));

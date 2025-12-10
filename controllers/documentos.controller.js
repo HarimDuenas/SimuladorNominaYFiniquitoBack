@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
+
 const { generarHtmlRecibo } = require('../utils/pdfTemplates');
+const { generarExcelRecibo } = require('../utils/excelTemplates');
 
 const generarDocumentosPdf = async (req, res) => {
     try {
@@ -49,6 +51,38 @@ const generarDocumentosPdf = async (req, res) => {
     }
 };
 
+const generarDocumentosExcel = async (req, res) => {
+    try {
+        const { datosCalculo, tipo } = req.body;
+
+        if (!datosCalculo || !tipo) {
+            return res.status(400).json({ mensaje: "Faltan datos de cálculo o el tipo de documento." });
+        }
+
+        // Generar el libro de Excel
+        const workbook = await generarExcelRecibo(datosCalculo, tipo);
+
+        // Configurar headers para descarga
+        res.setHeader(
+            'Content-Type',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        );
+        res.setHeader(
+            'Content-Disposition',
+            `attachment; filename=calculo_${tipo}_${Date.now()}.xlsx`
+        );
+
+        // Escribir directamente al buffer de respuesta
+        await workbook.xlsx.write(res);
+        res.end();
+
+    } catch (error) {
+        console.error("Error generando Excel:", error);
+        res.status(500).json({ mensaje: "Error al generar el documento Excel." });
+    }
+};
+
 module.exports = {
-    generarDocumentosPdf
+    generarDocumentosPdf,
+    generarDocumentosExcel
 };

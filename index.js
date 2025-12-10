@@ -1,5 +1,5 @@
 const express = require("express");
-const nominaRoutes = require("./routes/nomina.routes");
+const calculosRoutes = require("./routes/calculos.routes");
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,7 +32,7 @@ app.use(cors({
 }));
 
 // Montar rutas bajo /api
-app.use("/api", nominaRoutes);
+app.use("/api", calculosRoutes);
 
 // Verificar su correcto funcionamiento 
 app.get("/health", (_req, res) => res.json({ ok: true }));

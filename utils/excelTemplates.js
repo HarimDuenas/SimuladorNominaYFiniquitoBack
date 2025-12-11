@@ -148,6 +148,19 @@ const generarExcelRecibo = async (datos, tipo) => {
         top: { style: 'medium' }, left: { style: 'medium' }, bottom: { style: 'medium' }, right: { style: 'medium' }
     };
 
+    currentRow += 3;
+        
+    // Texto Warning
+    worksheet.mergeCells(`A${currentRow}:E${currentRow}`);
+    const disclaimerCell = worksheet.getCell(`A${currentRow}`);
+        
+    disclaimerCell.value = `AVISO LEGAL: Los calculos presentados son estimaciones basadas en las variables (UMA, tablas ISR y cuotas IMSS) que se  encuentran vigente en el año actual 2025. Debido a que estas variables suelen actualizarse. Se recomienda validar la información con un especialista contable o fiscal antes de realizar cualquier cálculo.`;
+        
+    disclaimerCell.font = { size: 9, italic: true, color: { argb: 'FF555555' } }; 
+    disclaimerCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; 
+        
+    worksheet.getRow(currentRow).height = 45;
+
     return workbook;
 };
 

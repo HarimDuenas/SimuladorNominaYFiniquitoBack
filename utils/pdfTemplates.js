@@ -94,6 +94,16 @@ const generarHtmlRecibo = (datos, tipo) => {
             .legal-text { font-size: 10px; text-align: justify; margin-top: 30px; color: #666; }
             .firmas { margin-top: 80px; display: flex; justify-content: space-around; }
             .firma-linea { border-top: 1px solid #000; width: 40%; text-align: center; padding-top: 5px; font-size: 12px; }
+
+            .disclaimer {
+                margin-top: 50px;
+                padding-top: 10px;
+                border-top: 1px solid #ccc;
+                font-size: 9px;
+                color: #777;
+                text-align: center;
+                font-style: italic;
+            }
         </style>
     </head>
     <body>
@@ -134,11 +144,16 @@ const generarHtmlRecibo = (datos, tipo) => {
             <div class="neto-monto">${moneda(netoPagar)}</div>
         </div>
 
-        ${esFiniquito ? `<p class="legal-text">
-            Recibo a mi entera conformidad la cantidad neta descrita, por concepto de mi liquidación y finiquito laboral, 
-            declarando que no se me adeuda cantidad alguna por concepto de salarios, prestaciones o indemnizaciones, 
-            otorgando el más amplio finiquito que en derecho proceda.
-        </p>` : ''}
+        <div class="disclaimer">
+            <p>
+                <strong>AVISO LEGAL:</strong>
+                Los calculos presentados son estimaciones basadas
+                en las variables (UMA, tablas ISR y cuotas IMSS) que se 
+                encuentran vigente en el año actual 2025. Debido a que estas
+                variables suelen actualizarse. Se recomienda validar la información con
+                un especialista contable o fiscal antes de realizar cualquier cálculo.
+            </p>
+        </div>
     </body>
     </html>
     `;
